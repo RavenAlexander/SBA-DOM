@@ -10,11 +10,14 @@ h1.style.color = "#372104";
 
 h1.parentNode.style.color = "#333"; // this changes the body text color
 
+
 // Load tasks from localStorage or use predefined tasks
-window.onload = function() { //BOM
+window.onload = function() { //BOM 
+    localStorage.clear(); //What this does is resets the localStorage data when the window reloads, for the purposes of this demo I chose not to allow tasks to be stored indefinitely as it was causing issues
     var todoList = document.getElementById("todo-list");
     if (localStorage.getItem("tasks")) {
         todoList.innerHTML = localStorage.getItem("tasks");
+    
     } else {
         // Add predefined tasks to the list
         defaultTasks.forEach(function(taskText) {
@@ -44,13 +47,13 @@ function addTask() {
 function addTaskToList(taskText) {
     var todoList = document.getElementById("todo-list");
     
-    var todoItem = document.createElement("div");
+    var todoItem = document.createElement("div"); // each to-do item is created in a new div
     todoItem.classList.add("todo-item");
     
     var checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.addEventListener("change", function() {
-        if (this.checked) {
+        if (this.checked) { // I learned about using "this" from stack overflow/MDN website
             todoItem.style.textDecoration = "line-through"; //modifies the element attribute based on user interaction
         } else {
             todoItem.style.textDecoration = "none";
@@ -66,17 +69,14 @@ function addTaskToList(taskText) {
     deleteButton.textContent = "Delete";
     deleteButton.addEventListener("click", function() {
         if (window.confirm("Are you sure you want to delete this task?")) {
-            todoItem.remove();
+            todoItem.remove(); //deletes task
            
         }
     });
     
-    todoItem.appendChild(checkbox);
+    todoItem.appendChild(checkbox); // These add all of the elements to the todo-list div
     todoItem.appendChild(taskLabel);
     todoItem.appendChild(deleteButton);
     
     todoList.appendChild(todoItem);
 }
-
-//Note: I noticed that sometimes when I refresh the page, the "Delete" button will stop working on previously saved tasks but I'm not sure why? Sometimes it works just fine and other times it doesn't. Weird. 
-//I've tried to console.log to see what might be causing it but I can't find the error. I am new to using localStorage so that may have something to do with it.
