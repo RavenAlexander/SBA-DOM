@@ -1,0 +1,29 @@
+#todo-list {
+    margin-bottom: 20px;
+}
+.todo-item {
+    margin-bottom: 10px;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 170px;
+    width: 350px;
+    max-height: 500px;
+    overflow: hidden;
+}
+
+body {
+    text-align: center;
+    background-image: url("pexels-mockupbee-12039583\ \(1\).jpg");
+    background-position-x: center;
+    background-position-y: -60px;
+    background-repeat: no-repeat;
+    background-color: #eaeaea;
+}
+
+h1 {
+    text-decoration-line: underline;
+}
+
